@@ -61,8 +61,8 @@ class Curso(models.Model):
     curso = models.CharField(max_length=255)
     duracion = models.IntegerField()
     precio = models.DecimalField(decimal_places=2)
-    id_categoria = ForeignKey(Categoria)
-    id_modalidad = ForeignKey(Modalidad)
+    id_categoria = ForeignKey(Categoria, on_delete=models.CASCADE)
+    id_modalidad = ForeignKey(Modalidad, on_delete=models.CASCADE)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now_add=True)
 
@@ -79,7 +79,7 @@ class Curso(models.Model):
 class PeriodoLectivo(models.Model):
     id = models.AutoField(primary_key=True)
     perido = models.CharField(max_length=255)
-    id_curso = models.ForeignKey(Curso)
+    id_curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
     fechaInicio = models.DateTimeField()
     fehaCierre = models.DateTimeField()
     create_at = models.DateTimeField(auto_now_add=True)
@@ -115,8 +115,8 @@ class Horario(models.Model):
 
 class HorarioCurso(models.Model):
     id = models.AutoField(primary_key=True)
-    id_horario = models.ForeignKey(Horario)
-    id_curso = models.ForeignKey(Curso)
+    id_horario = models.ForeignKey(Horario, on_delete=models.CASCADE)
+    id_curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now_add=True)
 
